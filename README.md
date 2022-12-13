@@ -79,7 +79,7 @@ test : 테스트 코드 수정에 대한 커밋
 </details>
 
 <details>
-<summary> tutorial-tictactoe </summary>
+<summary> Tutorial-tictactoe </summary>
 
 ---
 ### Tic-Tac-Toe Game
@@ -92,12 +92,12 @@ test : 테스트 코드 수정에 대한 커밋
 </details>
 
 <details>
-<summary> react-todo </summary>
+<summary> Stick-Study </summary>
 
 ---
-### Task(TodoList)
+### Stick Study
 
-react를 이용한 Task(TodoList)를 만들면서 react의 문법과 사용 방법을 학습
+react study in Stick
 
 ---
 </details>

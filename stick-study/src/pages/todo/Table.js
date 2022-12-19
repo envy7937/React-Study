@@ -2,48 +2,38 @@ import {Button, Col, Input, Label, ListGroup, ListGroupItem, Nav, NavItem, NavLi
 import React from 'react'
 import classnames from 'classnames'
 import {XCircle} from 'react-feather'
+import useSelectorTyped from '../../hooks/useSelectTyped'
+import {useDispatch} from 'react-redux'
+import {handleRemoveAll, handleRemoveTodo} from './store'
 
 const TodoListTable = () => {
-  return (
-    <>
-      <Row>
-        <Col lg={8}>
-          <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={classnames({active: true})}
-                onClick={null}>All</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={null}
-                onClick={null}>Active</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={null}
-                onClick={null}>Completed</NavLink>
-            </NavItem>
-          </Nav>
-        </Col>
-        <Col lg={4} className={'d-flex justify-content-end'}>
-          <Button type={'button'} size={'sm'}>전체 삭제</Button>
-        </Col>
-      </Row>
+  const dispatch = useDispatch()
 
-      <ListGroup>
-        <ListGroupItem className="d-flex justify-content-between">
+  const list = useSelectorTyped(state => state.todoManage.list)
+
+  const handleRemove = todo => {
+    if (window.confirm('정말 삭제하겠습니까 ?')) {
+      dispatch(handleRemoveTodo(todo))
+    }
+  }
+
+  return (
+    <ListGroup>
+      {list && list.length > 0 && list.map((item, index) => {
+        return (
+          <ListGroupItem key={'index'} className="d-flex justify-content-between">
           <span>
             <Label>
               <Input type={'checkbox'}/>
-              test
+              {item.text}
             </Label>
-            <span className={'d-inline-block'}>2022-12-19 00:00:00</span>
+            <span className={'d-inline-block'}>{item.created_at}</span>
           </span>
-          <XCircle size={24} />
-        </ListGroupItem>
-      </ListGroup>
-    </>
+            <XCircle size={24} onClick={() => handleRemove(item)}/>
+          </ListGroupItem>
+        )
+      })}
+    </ListGroup>
   )
 }
 

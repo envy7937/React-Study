@@ -4,12 +4,16 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import 'bootstrap/dist/css/bootstrap.css'
 import {BrowserRouter} from 'react-router-dom'
+import {Provider} from 'react-redux'
+import {store} from './redux/store'
 
 const LazyApp = lazy(() => import('./App'))
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>
-    <LazyApp />
+    <Provider store={store}>
+        <LazyApp />
+    </Provider>
   </BrowserRouter>
 );
 

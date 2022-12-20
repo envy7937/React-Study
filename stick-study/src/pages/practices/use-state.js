@@ -33,10 +33,10 @@ const UseStatePage = () => {
     }
     setLogs([...logList])
 
-  }, [sort])
+  }, [logs, sort])
 
   useEffect(() => {
-    if (!(count === 0 && logs.length === 0)) {
+    if (!(count === 0 && logs && logs.length === 0)) {
       if (sort === 'asc') {
         setLogs([
           ...logs,
@@ -65,7 +65,7 @@ const UseStatePage = () => {
         }
       ])
     }
-  }, [count])
+  }, [count, logs, sort])
 
   return (
     <div>

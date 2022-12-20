@@ -15,6 +15,7 @@ const Todo = () => {
 
   const [inputText, setInputText] = useState('')
   const [sort, setSort] = useState('asc')
+  const [filter, setFilter] = useState('')
 
   const sortOptions = [
     {
@@ -31,7 +32,7 @@ const Todo = () => {
     dispatch(handleAddTodo({
       id: list.length + 1,
       text: inputText,
-      state: 'active',
+      is_completed: false,
       created_at: moment().format('YYYY-MM-DD HH:mm:ss')
     }))
 
@@ -43,6 +44,7 @@ const Todo = () => {
       handleAdd()
     }
   }
+
   const handleClearAll = () => {
     if (window.confirm('정말 모두 삭제하겠습니까 ?')) {
       dispatch(handleRemoveAll())
@@ -51,7 +53,7 @@ const Todo = () => {
 
   useEffect(() => {
     dispatch(handleSetSort(sort))
-  }, [sort])
+  }, [dispatch, sort])
 
   return (
     <Container>
@@ -65,18 +67,18 @@ const Todo = () => {
           <Nav tabs>
             <NavItem>
               <NavLink
-                className={classnames({active: true})}
-                onClick={null}>All</NavLink>
+                className={classnames({active: !filter})}
+                onClick={() => setFilter('')}>All</NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={null}
-                onClick={null}>Active</NavLink>
+                className={classnames({active: filter === 'active'})}
+                onClick={() => setFilter('active')}>Active</NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={null}
-                onClick={null}>Completed</NavLink>
+                className={classnames({active: filter === 'completed'})}
+                onClick={() => setFilter('completed')}>Completed</NavLink>
             </NavItem>
           </Nav>
         </Col>
@@ -92,7 +94,7 @@ const Todo = () => {
         </Col>
       </Row>
 
-      <TodoList/>
+      <TodoList filter={filter} />
     </Container>
   )
 }

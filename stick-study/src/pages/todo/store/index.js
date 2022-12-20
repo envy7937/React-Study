@@ -8,7 +8,6 @@ export const TodoManageSlice = createSlice({
      *     text: String, // 할일 내용, 기존의 title
      *     is_completed: Boolean, // 상태값(false: 미완료, true: 완료)
      *     created_at: String, // 생성일시(format: 2021-05-13 08:57:55)
-     *     updated_at: String, // 수정일시(format: 2021-05-13 09:06:16)
      * }]
      */
     list: [],

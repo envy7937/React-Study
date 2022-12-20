@@ -1,15 +1,16 @@
-import {Button, Col, Input, Label, ListGroup, ListGroupItem, Nav, NavItem, NavLink, Row} from 'reactstrap'
-import React from 'react'
-import classnames from 'classnames'
+import {Input, Label, ListGroup, ListGroupItem} from 'reactstrap'
+import React, {useEffect, useState} from 'react'
 import {XCircle} from 'react-feather'
 import useSelectorTyped from '../../hooks/useSelectTyped'
 import {useDispatch} from 'react-redux'
-import {handleRemoveAll, handleRemoveTodo} from './store'
+import {handleRemoveTodo, handleToggleState} from './store'
 
-const TodoListTable = () => {
+const TodoListTable = ({filter}) => {
   const dispatch = useDispatch()
 
   const list = useSelectorTyped(state => state.todoManage.list)
+
+  const [showList, setShowList] = useState([])
 
   const handleRemove = todo => {
     if (window.confirm('정말 삭제하겠습니까 ?')) {
@@ -17,14 +18,34 @@ const TodoListTable = () => {
     }
   }
 
+  const handleToggle = todo => {
+    dispatch(handleToggleState(todo))
+  }
+
+  useEffect(() => {
+    let tempList = []
+
+    if (list) {
+      tempList = [...list]
+
+      if (filter === 'active') {
+        tempList = list.filter(item => item.is_completed === false)
+      } else if (filter === 'completed') {
+        tempList = list.filter(item => item.is_completed === true)
+      }
+    }
+
+    setShowList(tempList)
+  }, [list, filter])
+
   return (
     <ListGroup>
-      {list && list.length > 0 && list.map((item, index) => {
+      {showList && showList.length > 0 && showList.map((item, index) => {
         return (
           <ListGroupItem key={'index'} className="d-flex justify-content-between">
           <span>
             <Label>
-              <Input type={'checkbox'}/>
+              <Input type={'checkbox'} checked={item.is_completed} onChange={() => handleToggle(item)}/>
               {item.text}
             </Label>
             <span className={'d-inline-block'}>{item.created_at}</span>

@@ -16,6 +16,7 @@ const Todo = () => {
   const [inputText, setInputText] = useState('')
   const [sort, setSort] = useState('asc')
   const [filter, setFilter] = useState('')
+  const [showList, setShowList] = useState([])
 
   const sortOptions = [
     {
@@ -55,15 +56,39 @@ const Todo = () => {
     dispatch(handleSetSort(sort))
   }, [dispatch, sort])
 
+  useEffect(() => {
+    let tempList = []
+
+    if (list) {
+      tempList = list
+
+      if (filter === 'active') {
+        tempList = list.filter(item => item.is_completed === false)
+      } else if (filter === 'completed') {
+        tempList = list.filter(item => item.is_completed === true)
+      }
+    }
+
+    setShowList(tempList)
+  }, [list, filter])
+
   return (
-    <Container>
-      <InputGroup>
+    <Container className={'my-3'}>
+      <h1>Todo List</h1>
+
+      <InputGroup className={'my-5'}>
         <Input type={'text'} value={inputText} onKeyDown={handleInputKeyDown} onChange={e => setInputText(e.target.value)}/>
         <Button type={'button'} onClick={() => handleAdd()}>등록</Button>
       </InputGroup>
 
+      <Row className={'mb-3'}>
+        <Col>
+          <span>Total : {showList.length}</span>
+        </Col>
+      </Row>
+
       <Row>
-        <Col lg={8}>
+        <Col lg={9}>
           <Nav tabs>
             <NavItem>
               <NavLink
@@ -82,10 +107,11 @@ const Todo = () => {
             </NavItem>
           </Nav>
         </Col>
-        <Col lg={4} className={'d-flex justify-content-between'}>
+        <Col lg={3} className={'d-flex justify-content-end'}>
           <Select
             size='lg'
             placeholder="등록순"
+            className={'me-3'}
             classNamePrefix='select'
             onChange={data => setSort(data.value)}
             value={sortOptions.find(item => item.value === sort)}
@@ -94,7 +120,7 @@ const Todo = () => {
         </Col>
       </Row>
 
-      <TodoList filter={filter} />
+      <TodoList list={showList} />
     </Container>
   )
 }

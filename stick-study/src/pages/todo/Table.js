@@ -1,16 +1,11 @@
 import {Input, Label, ListGroup, ListGroupItem} from 'reactstrap'
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {XCircle} from 'react-feather'
-import useSelectorTyped from '../../hooks/useSelectTyped'
 import {useDispatch} from 'react-redux'
 import {handleRemoveTodo, handleToggleState} from './store'
 
-const TodoListTable = ({filter}) => {
+const TodoListTable = ({list}) => {
   const dispatch = useDispatch()
-
-  const list = useSelectorTyped(state => state.todoManage.list)
-
-  const [showList, setShowList] = useState([])
 
   const handleRemove = todo => {
     if (window.confirm('정말 삭제하겠습니까 ?')) {
@@ -22,36 +17,34 @@ const TodoListTable = ({filter}) => {
     dispatch(handleToggleState(todo))
   }
 
-  useEffect(() => {
-    let tempList = []
+  const TodoItem = ({item}) => {
+    const [isHover, setIsHover] = useState(false)
 
-    if (list) {
-      tempList = [...list]
+    return (
+      <ListGroupItem
+        className="d-flex justify-content-between"
+        onMouseEnter={() => setIsHover(!isHover)}
+        onMouseLeave={() => setIsHover(!isHover)}
+      >
+        <span>
+          <Label className={'me-2'}>
+            <Input type={'checkbox'} className={'me-2'} checked={item.is_completed}
+                   onChange={() => handleToggle(item)}/>
+            {item.text}
+          </Label>
+          <span className={'d-inline-block'}>{item.created_at}</span>
+        </span>
+        {isHover && <XCircle size={24} onClick={() => handleRemove(item)}/>}
+      </ListGroupItem>
+    )
+  }
 
-      if (filter === 'active') {
-        tempList = list.filter(item => item.is_completed === false)
-      } else if (filter === 'completed') {
-        tempList = list.filter(item => item.is_completed === true)
-      }
-    }
-
-    setShowList(tempList)
-  }, [list, filter])
 
   return (
     <ListGroup>
-      {showList && showList.length > 0 && showList.map((item, index) => {
+      {list && list.length > 0 && list.map((item, index) => {
         return (
-          <ListGroupItem key={'index'} className="d-flex justify-content-between">
-          <span>
-            <Label>
-              <Input type={'checkbox'} checked={item.is_completed} onChange={() => handleToggle(item)}/>
-              {item.text}
-            </Label>
-            <span className={'d-inline-block'}>{item.created_at}</span>
-          </span>
-            <XCircle size={24} onClick={() => handleRemove(item)}/>
-          </ListGroupItem>
+          <TodoItem key={index} item={item}/>
         )
       })}
     </ListGroup>

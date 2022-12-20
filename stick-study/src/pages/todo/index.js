@@ -3,7 +3,7 @@ import {Button, Col, Container, Input, InputGroup, Nav, NavItem, NavLink, Row} f
 import {useDispatch} from 'react-redux'
 import useSelectorTyped from '../../hooks/useSelectTyped'
 import moment from 'moment'
-import {handleAddTodo, handleRemoveAll, handleSetSort} from './store'
+import {handleAddTodo, handleRemoveAll, handleSetOrderBy} from './store'
 import classnames from 'classnames'
 import Select from 'react-select'
 
@@ -12,9 +12,9 @@ const TodoList = lazy(() => import('./Table'))
 const Todo = () => {
   const dispatch = useDispatch()
   const list = useSelectorTyped(state => state.todoManage.list)
+  const orderBy = useSelectorTyped(state => state.todoManage.orderBy)
 
   const [inputText, setInputText] = useState('')
-  const [sort, setSort] = useState('asc')
   const [filter, setFilter] = useState('')
   const [showList, setShowList] = useState([])
 
@@ -26,6 +26,10 @@ const Todo = () => {
     {
       label: '최신순',
       value: 'desc'
+    },
+    {
+      label: '가나다순',
+      value: 'abc'
     }
   ]
 
@@ -52,9 +56,9 @@ const Todo = () => {
     }
   }
 
-  useEffect(() => {
-    dispatch(handleSetSort(sort))
-  }, [dispatch, sort])
+  const handleSort = sort => {
+    dispatch(handleSetOrderBy(sort))
+  }
 
   useEffect(() => {
     let tempList = []
@@ -113,8 +117,8 @@ const Todo = () => {
             placeholder="등록순"
             className={'me-3'}
             classNamePrefix='select'
-            onChange={data => setSort(data.value)}
-            value={sortOptions.find(item => item.value === sort)}
+            onChange={data => handleSort(data.value)}
+            value={sortOptions.find(item => item.value === orderBy)}
             options={sortOptions} />
           <Button type={'button'} size={'sm'} onClick={handleClearAll}>전체 삭제</Button>
         </Col>

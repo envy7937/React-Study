@@ -23,6 +23,9 @@
     "reactstrap": "^9.1.5",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

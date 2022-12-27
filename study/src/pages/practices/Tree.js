@@ -8,7 +8,7 @@ const Circle = styled.button`
   border-radius: 50%;
   background: ${props => props.inputColor || '#61dafb'};
   
-  ${props => props.active && 
+  ${({active}) => active && 
   css`
     background: #fa2968;
   `}
@@ -25,7 +25,7 @@ const CustomCircle = ({active, color, childCount, handleActive}) => {
   )
 }
 
-const Tree = () => {
+const CircleWrap = ({childCount, color}) => {
   const [active, setActive] = useState(false)
 
   const handleActive = () => {
@@ -33,11 +33,22 @@ const Tree = () => {
   }
 
   return (
+    <div className={'d-flex'}>
+      <CustomCircle childCount={childCount} active={active} color={color} handleActive={handleActive}/>
+    </div>
+  )
+}
+
+const Tree = () => {
+  return (
     <Container className={'my-3'}>
       <h1>Practice Component Props</h1>
 
       <div>
-        <CustomCircle childCount={4} active={active} handleActive={handleActive}/>
+        <CircleWrap childCount={4} />
+        <CircleWrap childCount={2} color={'#e2e834'} />
+        <CircleWrap childCount={3} color={'#56fa29'} />
+        <CircleWrap childCount={8} color={'#9d67f1'} />
       </div>
     </Container>
   )

@@ -65,7 +65,7 @@ const UseStatePage = () => {
         }
       ])
     }
-  }, [count, logs, sort])
+  }, [count, sort])
 
   return (
     <div>

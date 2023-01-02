@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-const UseStatePage = () => {
+const CountPage = () => {
   const [count, setCount] = useState(0)
   const [logs, setLogs] = useState([])
   const [sort, setSort] = useState('asc')
@@ -88,4 +88,4 @@ const UseStatePage = () => {
   )
 }
 
-export default UseStatePage
+export default CountPage

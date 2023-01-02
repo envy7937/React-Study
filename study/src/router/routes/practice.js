@@ -1,6 +1,7 @@
 import PracticeList from '../../pages/practices/index'
-import UseStatePage from '../../pages/practices/use-state'
+import CountPage from '../../pages/practices/Count'
 import Tree from '../../pages/practices/Tree'
+import Theme from '../../pages/practices/Theme'
 
 const PracticeRoutes = [
   {
@@ -8,12 +9,16 @@ const PracticeRoutes = [
     element: <PracticeList />
   },
   {
-    path: '/practice/use-state',
-    element: <UseStatePage />
+    path: '/practices/count',
+    element: <CountPage />
   },
   {
-    path: '/practice/tree',
+    path: '/practices/tree',
     element: <Tree />
+  },
+  {
+    path: '/practices/theme',
+    element: <Theme />
   }
 ]
 

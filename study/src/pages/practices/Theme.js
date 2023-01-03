@@ -6,8 +6,8 @@ import {useContext, useEffect, useState} from 'react'
 import {ThemeContext} from '../../context/ThemeContext'
 
 const Theme = () => {
-  const {theme, setTheme} = useContext(ThemeContext)
-  const [isDark, setIsDark] = useState(false)
+  const {theme, setTheme, isEffect, setIsEffect} = useContext(ThemeContext)
+  const [isDark, setIsDark] = useState(theme === 'dark')
 
   useEffect(() => {
     if (isDark) {
@@ -15,7 +15,7 @@ const Theme = () => {
     } else {
       setTheme('light')
     }
-  }, [isDark])
+  }, [isDark, setTheme])
 
   const renderThemeButton = (isDark) => {
     return (
@@ -35,7 +35,7 @@ const Theme = () => {
           <Form className={'me-3'}>
             <FormGroup switch>
               <Label check className={'fs-5'}>이펙트</Label>
-              <Input type="switch" role="switch" />
+              <Input type="switch" role="switch" checked={isEffect} onChange={e => setIsEffect(e.target.checked)}/>
             </FormGroup>
           </Form>
           {renderThemeButton(isDark)}

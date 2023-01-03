@@ -1,3 +1,23 @@
+.light {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #bdb6b6;
+    font-size: 24px;
+  }
+}
+
+.dark {
+  background: #282c34;
+  color: white;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #0f0011;
+    font-size: 24px;
+  }
+}
 
 .snowflake {
   width: 8px;

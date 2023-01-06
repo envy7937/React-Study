@@ -1,9 +1,11 @@
 import PracticeRoutes from './practice'
 import TodoRoutes from './todo'
+import AuthRoutes from './auth'
 
 const routes = [
   ...PracticeRoutes,
-  ...TodoRoutes
+  ...TodoRoutes,
+  ...AuthRoutes
 ]
 
 const getRoutes = () => {

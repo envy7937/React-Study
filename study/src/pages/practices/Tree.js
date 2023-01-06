@@ -41,7 +41,7 @@ const CircleWrap = ({childCount, color}) => {
 
 const Tree = () => {
   return (
-    <Container className={'my-3'}>
+    <Container className={'py-3'}>
       <h1>Practice Component Props</h1>
 
       <div>

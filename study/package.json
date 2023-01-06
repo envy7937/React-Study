@@ -12,6 +12,7 @@
     "bootstrap": "^5.2.3",
     "classnames": "^2.3.2",
     "moment": "^2.29.4",
+    "msw": "^0.49.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
@@ -52,5 +53,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "/"
+  "homepage": "https://envy7937.github.io/React-Study/"
 }

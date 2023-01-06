@@ -10,7 +10,7 @@ import {store} from './redux/store'
 const LazyApp = lazy(() => import('./App'))
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={'/React-Study'}>
     <Provider store={store}>
         <LazyApp />
     </Provider>

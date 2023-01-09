@@ -1,7 +1,7 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {Container, ListGroup, ListGroupItem} from 'reactstrap'
-import Navbar from '../../Components/Navbar'
+import Navbar from '../../components/Navbar'
 
 const PracticeList = () => {
   const navigate = useNavigate()

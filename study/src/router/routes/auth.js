@@ -1,4 +1,4 @@
-import Login from '../../pages/practices/auth/Login'
+import Login from '../../pages/auth/Login'
 
 const AuthRoutes = [
   {

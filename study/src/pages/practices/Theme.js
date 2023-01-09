@@ -1,7 +1,7 @@
 import './theme.scss'
 import {Container} from 'reactstrap'
 import './theme.scss'
-import Navbar from '../../Components/Navbar'
+import Navbar from '../../components/Navbar'
 
 const Theme = () => {
   return (

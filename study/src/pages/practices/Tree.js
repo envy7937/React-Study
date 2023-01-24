@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Container} from 'reactstrap'
 import styled, {css} from 'styled-components'
+import Navbar from '../../components/Navbar'
 
 const Circle = styled.button`
   width: 100px;
@@ -41,16 +42,19 @@ const CircleWrap = ({childCount, color}) => {
 
 const Tree = () => {
   return (
-    <Container className={'py-3'}>
-      <h1>Practice Component Props</h1>
+    <>
+      <Navbar/>
+      <Container className={'py-3'}>
+        <h1>Practice Component Props</h1>
 
-      <div>
-        <CircleWrap childCount={4} />
-        <CircleWrap childCount={2} color={'#e2e834'} />
-        <CircleWrap childCount={3} color={'#56fa29'} />
-        <CircleWrap childCount={8} color={'#9d67f1'} />
-      </div>
-    </Container>
+        <div>
+          <CircleWrap childCount={4} />
+          <CircleWrap childCount={2} color={'#e2e834'} />
+          <CircleWrap childCount={3} color={'#56fa29'} />
+          <CircleWrap childCount={8} color={'#9d67f1'} />
+        </div>
+      </Container>
+    </>
   )
 }
 

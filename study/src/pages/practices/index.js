@@ -20,6 +20,9 @@ const PracticeList = () => {
           <ListGroupItem onClick={() => navigate(`/practices/theme`)}>
             Custom Hook & 전역 상태 관리
           </ListGroupItem>
+          <ListGroupItem onClick={() => navigate(`/practices/cats`)}>
+            고양이 관리하기
+          </ListGroupItem>
         </ListGroup>
       </Container>
     </>

@@ -42,8 +42,8 @@ const CatDetail = () => {
                   <ListGroupItem>나이: {cat.age}</ListGroupItem>
                   <ListGroupItem>무게: {cat.weight}</ListGroupItem>
                   <ListGroupItem>상태: {cat.status}</ListGroupItem>
-                  <ListGroupItem>먹이 준 횟수: {cat.feedCount}</ListGroupItem>>
-                  <ListGroupItem>처음 먹이 준 날짜: {cat.firstFeedTime}</ListGroupItem>>
+                  <ListGroupItem>먹이 준 횟수: {cat.feedCount}</ListGroupItem>
+                  <ListGroupItem>처음 먹이 준 날짜: {cat.firstFeedTime}</ListGroupItem>
                   <ListGroupItem>마지막으로 먹이 준 날짜: {cat.lastFeedTime}</ListGroupItem>
                 </ListGroup>
               </CardBody>

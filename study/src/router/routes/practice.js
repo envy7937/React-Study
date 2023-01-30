@@ -3,7 +3,7 @@ import CountPage from '../../pages/practices/Count'
 import Tree from '../../pages/practices/Tree'
 import Theme from '../../pages/practices/Theme'
 import Cat from '../../pages/practices/cat'
-import CatDetail from '../../pages/practices/cat/Detail'
+import CatDetail from '../../pages/practices/cat/detail/_id'
 
 const PracticeRoutes = [
   {

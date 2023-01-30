@@ -5,6 +5,7 @@ import {ThemeContext} from './context/ThemeContext'
 import './pages/practices/theme.scss'
 import {useTheme} from './hooks/useTheme'
 import {AuthContext} from './context/AuthContext'
+import {RecoilRoot} from 'recoil'
 
 const ThemeContextProvider = ({children}) => {
   const {theme, setTheme, isEffect, setIsEffect} = useTheme()
@@ -31,11 +32,13 @@ const App = () => {
 
   return (
     <Suspense fallback={null}>
-      <ThemeContextProvider>
-        <AuthContextProvider>
-          <Router />
-        </AuthContextProvider>
-      </ThemeContextProvider>
+      <RecoilRoot>
+        <ThemeContextProvider>
+          <AuthContextProvider>
+            <Router />
+          </AuthContextProvider>
+        </ThemeContextProvider>
+      </RecoilRoot>
     </Suspense>
   )
 }

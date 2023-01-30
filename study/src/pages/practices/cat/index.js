@@ -1,14 +1,14 @@
 import {
   CardGroup,
-  Container,
+  Container
 } from 'reactstrap'
-import React, {useEffect} from 'react'
+import React from 'react'
 import Navbar from '../../../components/Navbar'
-import useSelectorTyped from '../../../hooks/useSelectTyped'
-import CatCard from './store/CatCard'
+import CatCard from './CatCard'
+import {useCatsState} from './store/useCat'
 
 const Cat = () => {
-  const catList = useSelectorTyped(state => state.catManage.catList)
+  const {cats} = useCatsState()
 
   return (
     <>
@@ -16,13 +16,17 @@ const Cat = () => {
       <Container className={'py-3'}>
         <h1>고양이 관리</h1>
 
-        <CardGroup>
-          {catList && catList.length > 0 && catList.map((cat, index) => {
-            return (
-              <CatCard cat={cat} key={index}/>
-            )
-          })}
-        </CardGroup>
+        {cats && cats.length > 0 ? (
+          <CardGroup>
+            {cats.map((cat, index) => {
+              return (
+                <CatCard cat={cat} key={index}/>
+              )
+            })}
+          </CardGroup>
+        ) : (
+          <div>고양이가 없습니다.</div>
+        )}
       </Container>
     </>
   )

@@ -41,11 +41,25 @@ Git 메시지 컨벤션
 작은 작업이라도 반드시 이슈를 생성하고 생성된 이슈 트래커를 커밋 메시지에 포함시킨다.
 
 ---
+### Gitmoji를 활용한 Commit 작성법
+
+Gitmoji를 commit 메시지 앞에 추가하면 커밋의 성격을 한눈에 파악할 수 있다. 각 커밋 타입에 어울리는 emoji를 사용하여 메시지에 색다른 가독성과 직관성을 부여할 수 있다.
+
+예시로 자주 사용하는 gitmoji 목록은 다음과 같다:
+- **feat (새로운 기능 추가)**: `✨`
+- **fix (버그 수정)**: `🐛`
+- **docs (문서 수정)**: `📝`
+- **style (코드 스타일, 포맷 변경)**: `💄`
+- **refactor (코드 리팩토링)**: `♻️`
+- **test (테스트 코드 추가/수정)**: `✅`
+- **chore (기타 잡다한 수정)**: `🔧`
+
+---
 ### Reference
 
-* 헤더는 필수이며, 범위(scope), 본문(body), 바닥글(footer)은 선택
+* 헤더는 필수이며, gitmoji(gitmoji), 범위(scope), 본문(body), 바닥글(footer)은 선택
 ```
-<type>(<scope>): <subject>          -- 헤더
+<gitmoji> <type>(<scope>): <subject>          -- 헤더
 
 <body>                              -- 본문
 
@@ -66,6 +80,11 @@ refactor :  코드 리팩토링에 대한 커밋
 test : 테스트 코드 수정에 대한 커밋
 ```
 
+* `<subject>`는 Commit의 제목을 나타내며 50자를 넘기지 않음.  
+  대문자로 시작하며 마침표 없이 작성.  
+  과거형을 사용하지 않음.
+
+
 * `<body>`는 본문으로 헤더로 표현할 수 없는 상세한 내용을 기록.  
   헤더로 표현이 가능하다면 생략 가능
 
@@ -73,6 +92,15 @@ test : 테스트 코드 수정에 대한 커밋
 * `<footer>`는 바닥글로 어떤 이슈에서 왔는지 같은 참조 정보들을 추가하는 용도로 사용
 
 [[Git] 좋은 커밋 메세지 작성하기위한 규칙들](https://beomseok95.tistory.com/328)
+
+### 예시
+```
+✨ feat(UI): Add responsive navbar
+
+Updated the navigation bar to support responsive design.
+
+ISSUE: #123
+```
 
 ---
 
